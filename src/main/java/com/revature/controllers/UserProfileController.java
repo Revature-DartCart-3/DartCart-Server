@@ -67,6 +67,9 @@ public class UserProfileController {
 	  if(user.getLocation()!= null) {
 		  oldUser.get().setLocation(user.getLocation());
 	  }
+	  if(user.getImgUrl()!=null) {
+		  oldUser.get().setImgUrl(user.getLocation());
+	  }
 	  userService.updateUser(oldUser.get());
 	  return new ResponseEntity<User>(oldUser.get(), HttpStatus.OK);
 	  
