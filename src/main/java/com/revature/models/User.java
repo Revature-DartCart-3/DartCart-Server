@@ -58,7 +58,7 @@ public class User {
 //  private String aboutMe;
 //  
   
-  @NotNull
+  
   @Column
   private String imgUrl="https://th.bing.com/th/id/OIP.5a60XnoExzGIQ_7p31pL9AHaEc?pid=ImgDet&rs=1";
 
