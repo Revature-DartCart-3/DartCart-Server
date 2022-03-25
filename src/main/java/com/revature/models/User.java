@@ -52,8 +52,12 @@ public class User {
   @NotNull
   private long registrationDate;
   
+  
+ @Column(name = "imageurl")
   private String imageURL;
   
+  
+ @Column(name = "about_me")
   private String aboutMe;
   
 
