@@ -31,6 +31,7 @@ public class ProductServicesTests {
       1,
       "Kelloggs Froot Loops",
       "Delicious frooty flava",
+      "",
       categories
     );
     when(productRepository.findById(1)).thenReturn(Optional.of(p));

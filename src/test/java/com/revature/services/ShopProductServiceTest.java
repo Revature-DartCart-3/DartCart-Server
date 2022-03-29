@@ -25,7 +25,7 @@ public class ShopProductServiceTest {
     "desc",
     null
   );
-  private final Product mockProduct = new Product(1, "apple", "appley", null);
+  private final Product mockProduct = new Product(1, "apple", "appley", "", null);
 
   private final Shop mockShop = new Shop(1, "Here", mockSeller);
   private final ShopProduct mockShopProduct = new ShopProduct(

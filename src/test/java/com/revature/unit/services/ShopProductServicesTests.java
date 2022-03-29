@@ -43,6 +43,7 @@ public class ShopProductServicesTests {
       1,
       "testProduct",
       "testDescription",
+      "",
       new ArrayList<Category>(Arrays.asList(new Category(1, "testCategory")))
     )
   );
@@ -57,6 +58,7 @@ public class ShopProductServicesTests {
       2,
       "testProduct2",
       "testDescription2",
+      "",
       new ArrayList<Category>(Arrays.asList(new Category(2, "testCategory2")))
     )
   );
@@ -71,6 +73,7 @@ public class ShopProductServicesTests {
       3,
       "testProduct3",
       "testDescription3",
+      "",
       new ArrayList<Category>(Arrays.asList(new Category(3, "testCategory3")))
     )
   );
@@ -156,6 +159,7 @@ public class ShopProductServicesTests {
       1,
       "Kelloggs Froot Loops",
       "Delicious frooty flava",
+      "",
       categories
     );
     shopProduct.setProduct(product);
@@ -187,6 +191,7 @@ public class ShopProductServicesTests {
       1,
       "Loops",
       "Delicious frooty flava",
+      "",
       categories
     );
     shopProduct.setProduct(product);
@@ -214,6 +219,7 @@ public class ShopProductServicesTests {
       1,
       "Loops",
       "Delicious frooty flava",
+      "",
       categories
     );
     products.add(product);

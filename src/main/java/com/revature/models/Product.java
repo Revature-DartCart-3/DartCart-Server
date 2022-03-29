@@ -27,6 +27,8 @@ public class Product {
 
   @Column(length = 1000)
   private String description;
+  
+  private String imageURL;
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
