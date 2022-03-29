@@ -67,7 +67,7 @@ public class ShopProductServiceTest {
     Assertions.assertEquals(
       new ShopProductResponse(
         mockShopProduct.getId(),
-        mockShop.getId(),
+        mockShop,
         mockProduct,
         mockShopProduct.getPrice(),
         mockShop.getLocation(),
