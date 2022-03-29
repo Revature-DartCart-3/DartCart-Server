@@ -94,7 +94,7 @@ public class ShopProductServiceImpl implements ShopProductService {
       shopProducts.add(
         new ShopProductResponse(
           s.getId(),
-          s.getShop().getId(),
+          s.getShop(),
           s.getProduct(),
           s.getPrice(),
           s.getShop().getLocation(),

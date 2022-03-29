@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ShopProductResponse {
   private int shop_product_id;
-  private int shop_id;
+  private Shop shop;
   private Product product;
   private int price;
   private String location;
