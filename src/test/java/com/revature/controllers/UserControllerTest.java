@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.driver.DartCartApplication;
 import com.revature.models.User;
 import com.revature.services.UserService;
+import com.revature.services.UserServiceImpl;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -29,7 +31,7 @@ class UserControllerTest {
   private WebApplicationContext webApplicationContext;
 
   @MockBean
-  private UserService mockUserService;
+  private UserServiceImpl mockUserService;
 
   private final User mockUser = new User(
     1,

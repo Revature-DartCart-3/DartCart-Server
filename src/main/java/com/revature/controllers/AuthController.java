@@ -94,23 +94,6 @@ public class AuthController {
 			}
 		}
 		
-		// Caesar Cipher to obscure username in link
-        StringBuilder cipheredUsername = new StringBuilder();
-        int base = 96;
-        int shift = 1;
-        for(int i=0; i< username.length(); i++) {
-            int charAsInt = (int) username.charAt(i);
-
-            int shiftedLetter = charAsInt+shift;
-            if( shiftedLetter > 122) {
-            	shiftedLetter = (base + shiftedLetter % 122);
-            }
-            else if( shiftedLetter < 97) {
-            	shiftedLetter = 123 - (97-shiftedLetter);
-            }
-            cipheredUsername.append( (char) shiftedLetter );            
-        }
-		
 		String emailId = (UUID.randomUUID()).toString();
 		
 		String timestamp = Long.toString(System.currentTimeMillis());
@@ -126,7 +109,7 @@ public class AuthController {
 				"Password Reset Dart Cart", 
 				"Hello "+user.getFirstName()+",\n"+ "Use the following link to reset your password:\n"
 				+ "https://dart-cart-p3.azurewebsites.net/resetpassword?data="
-						+ cipheredUsername.toString()
+						+ username
 						+ "&data2="+emailId
 						+ "&data3="+String.valueOf(timestamp)
 						+ "&data4="+minuteUntilEmailExpires
