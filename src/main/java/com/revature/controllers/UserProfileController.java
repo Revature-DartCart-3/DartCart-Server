@@ -75,7 +75,6 @@ public class UserProfileController {
 	  if(user.getImageURL()!= null) {
 		  oldUser.get().setImageURL(user.getImageURL());
 	  }
-	  
 	  userService.updateUser(oldUser.get());
 	  return new ResponseEntity<User>(oldUser.get(), HttpStatus.OK);
   }
