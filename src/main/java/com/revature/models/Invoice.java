@@ -6,11 +6,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
- * This class represents an invoice of an order that has been placed.
- */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

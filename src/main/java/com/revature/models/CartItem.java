@@ -5,11 +5,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
- * This class represents an individual item in the cart or saved by a Customer.
- */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

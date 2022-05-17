@@ -7,11 +7,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
- * This class represents an individual location controlled by a Seller.
- */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -4,11 +4,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
- * This class hard codes data of an individual Product placed on an invoice.
- */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

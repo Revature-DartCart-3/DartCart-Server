@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 /**
  * This class represents a Seller entity in the database.
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

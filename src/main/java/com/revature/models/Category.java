@@ -4,11 +4,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
- * This class represents an individual Category a Product may belong to.
- */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
