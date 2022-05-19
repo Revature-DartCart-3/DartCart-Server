@@ -12,7 +12,15 @@ public class ChatMessage {
     private String recipientId;
     private String senderName;
     private String recipientName;
-    private MessageStatus status;
+    private String content;
+    
+    public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	private MessageStatus status;
 	public String getId() {
 		return id;
 	}
