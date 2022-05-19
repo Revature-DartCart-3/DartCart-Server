@@ -1,6 +1,6 @@
 package com.revature.models;
 
 public enum MessageStatus {
-    RECIEVED, DELIVERED
+    RECIEVED, DELIVERED, TRUE, FALSE
 
 }
