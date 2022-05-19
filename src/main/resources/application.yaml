@@ -9,7 +9,11 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
+<<<<<<< Updated upstream
     url: jdbc:postgresql://localhost:5432/project3
+=======
+    url: jdbc:postgresql://localhost:5432/test
+>>>>>>> Stashed changes
     #    url: jdbc:sqlserver://project3server.database.windows.net:1433;databaseName=Project3
     username: postgres
     password: admin
