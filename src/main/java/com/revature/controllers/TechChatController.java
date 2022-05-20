@@ -1,32 +1,54 @@
 package com.revature.controllers;
 
-import com.revature.models.ChatMessage;
-import com.revature.models.OutputMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
+
+import com.revature.models.ChatMessage;
+
+
+
+@Controller
 public class TechChatController {
+
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
-
-    @MessageMapping("/secured/room")
-    public void sendSpecific(
-            @Payload ChatMessage msg,
-            Principal user,
-            @Header("simpSessionId") String sessionId) throws Exception {
-        OutputMessage out = new OutputMessage(
-                msg.getSenderId(),
-                msg.getContent(),
-                new SimpleDateFormat("HH:mm").format(new Date()));
-        simpMessagingTemplate.convertAndSendToUser(
-                msg.getRecipientId(), "/queue/specific-user", out);
+    
+    @MessageMapping("/private-message")
+    public ChatMessage recMessage(@Payload ChatMessage message){	
+    	System.out.println(message.toString());
+    	System.out.println(message.getRecipientId());
+    	
+        simpMessagingTemplate.convertAndSendToUser(message.getRecipientId(), "/private", message);
+        return message;
     }
-
+    
+    //Handle initial message from client asking for help
+    @MessageMapping("/help-request")
+    public ChatMessage helpRequest(@Payload ChatMessage message){	
+    	
+        //simpMessagingTemplate.convertAndSendToUser(message.getRecipientId(), "/private", message);
+    	System.out.println("Recieved request for help");
+    	simpMessagingTemplate.convertAndSend("/chatroom/techies", message);
+        
+        return message;
+    }
+    
+    @MessageMapping("/message")
+    @SendTo("/chatroom/public")
+    public ChatMessage receiveMessage(@Payload ChatMessage message){
+        return message;
+    }
+    
+    
+    
+	
 }
+

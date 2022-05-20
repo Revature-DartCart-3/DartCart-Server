@@ -76,7 +76,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         "/signup/shop",
         "/shop_products",
         "/featured_products",
-        "/shop_products/search/**"
+        "/shop_products/search/**",
+        "/ws/**"
       )
       .permitAll()
       .antMatchers(HttpMethod.GET, "/sellers/**")
