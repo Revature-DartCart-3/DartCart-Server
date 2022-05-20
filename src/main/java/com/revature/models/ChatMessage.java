@@ -4,7 +4,6 @@ import javax.persistence.Id;
 
 public class ChatMessage {
 
-
     @Id
     private String id;
     private String chatId;
@@ -61,9 +60,7 @@ public class ChatMessage {
     public MessageStatus getStatus() {
         return status;
     }
-    public void setStatus(MessageStatus status) {
-        this.status = status;
-    }
+
 
 
 
