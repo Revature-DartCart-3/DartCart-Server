@@ -294,5 +294,6 @@ buildNumber.properties
 
 # sensitive configuration
 *.yaml
+.vscode
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,intellij+all,eclipse,maven,java
