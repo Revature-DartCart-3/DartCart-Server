@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,8 +23,18 @@ public class HelpSession {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "session_id")
 	private int sessionId;
-	private int clientUserId;
-	private String clientName;
-	private int techId;
-	private String techName;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User client;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User tech;
+	
+	@Column(name = "session_status")
+	private SessionStatus sessionStatus;
 }
+
+
+

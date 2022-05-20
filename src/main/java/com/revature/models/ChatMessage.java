@@ -6,43 +6,35 @@ public class ChatMessage {
 
 	
     @Id
-    private String id;
-    private String chatId;
-    private String senderId;
-    private String recipientId;
+    private int id;
+    private int chatId;
+    private int senderId;
+    private int recipientId;
     private String senderName;
     private String recipientName;
     private String content;
-    
-    public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	private MessageStatus status;
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getChatId() {
+	public int getChatId() {
 		return chatId;
 	}
-	public void setChatId(String chatId) {
+	public void setChatId(int chatId) {
 		this.chatId = chatId;
 	}
-	public String getSenderId() {
+	public int getSenderId() {
 		return senderId;
 	}
-	public void setSenderId(String senderId) {
+	public void setSenderId(int senderId) {
 		this.senderId = senderId;
 	}
-	public String getRecipientId() {
+	public int getRecipientId() {
 		return recipientId;
 	}
-	public void setRecipientId(String recipientId) {
+	public void setRecipientId(int recipientId) {
 		this.recipientId = recipientId;
 	}
 	public String getSenderName() {
@@ -57,12 +49,14 @@ public class ChatMessage {
 	public void setRecipientName(String recipientName) {
 		this.recipientName = recipientName;
 	}
-	public MessageStatus getStatus() {
-		return status;
+	public String getContent() {
+		return content;
 	}
-	public void setStatus(MessageStatus status) {
-		this.status = status;
+	public void setContent(String content) {
+		this.content = content;
 	}
+    
+
 	
     
     
