@@ -21,9 +21,6 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 
-//@SuppressWarnings("deprecation")
-
-//public class SocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigurer {
 @Configuration
 @EnableWebSocketMessageBroker
 public class SocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
