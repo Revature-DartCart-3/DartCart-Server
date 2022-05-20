@@ -6,24 +6,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-<<<<<<< Updated upstream
-@SuppressWarnings("deprecation")
-public class SocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigurer {
-	
-	@Override
-	public void configureMessageBroker (MessageBrokerRegistry config) {
-		config.enableStompBrokerRelay("/techchat/queue/specific-user");
-		config.setApplicationDestinationPrefixes("/spring-security-mvc-socket");
-		config.setUserDestinationPrefix("/techchat/user");
-	}
-	
-	@Override
-	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("techchat/room").withSockJS();
-	}
-	
-}
-=======
+
 //@SuppressWarnings("deprecation")
 
 //public class SocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigurer {
@@ -47,4 +30,4 @@ public class SocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
     }
 
 }
->>>>>>> Stashed changes
+
