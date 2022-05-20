@@ -1,6 +1,10 @@
 package com.revature.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
+import com.revature.models.AccountType;
+import com.revature.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,4 +30,10 @@ public class AuthService implements UserDetailsService {
 
     return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
   }
+
+
+
+
+
+
 }

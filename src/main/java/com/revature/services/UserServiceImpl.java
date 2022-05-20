@@ -1,10 +1,12 @@
 package com.revature.services;
 
+import com.revature.models.AccountType;
 import com.revature.models.User;
 import com.revature.repositories.UserRepo;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,11 @@ public class UserServiceImpl implements UserService {
   BCryptPasswordEncoder bCryptEncoder;
 
   public User addUser(User user) {
-    user.setPassword(bCryptEncoder.encode(user.getPassword()));
+   user.setPassword(bCryptEncoder.encode(user.getPassword()));
     return userRepo.save(user);
   }
+
+
 
   @Override
   public Optional<User> getUserById(int id) {
