@@ -22,10 +22,21 @@ public class TechChatController {
     private SimpMessagingTemplate simpMessagingTemplate;
     
     @MessageMapping("/private-message")
-    public ChatMessage recMessage(@Payload ChatMessage message){
+    public ChatMessage recMessage(@Payload ChatMessage message){	
     	System.out.println(message.toString());
     	System.out.println(message.getRecipientId());
+    	
         simpMessagingTemplate.convertAndSendToUser(message.getRecipientId(), "/private", message);
+        return message;
+    }
+    
+    //Handle initial message from client asking for help
+    @MessageMapping("/help-request")
+    public ChatMessage helpRequest(@Payload ChatMessage message){	
+    	
+        //simpMessagingTemplate.convertAndSendToUser(message.getRecipientId(), "/private", message);
+    	System.out.println("Recieved request for help");
+    	simpMessagingTemplate.convertAndSend("/chatroom/techies", message);
         
         return message;
     }
