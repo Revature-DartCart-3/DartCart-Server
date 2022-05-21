@@ -22,9 +22,9 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	UserRepo userRepo;
 	
 	
-	//Create new help session with the user, and set the status to UNASSIGNED
+	//Create new help session with the user, and set the status to UNASSIGNED. Returns the sessionId, and if no user is found, returns 0
 	@Override
-	public void createSession(int userId) {
+	public int createSession(int userId) {
 		Optional user = userRepo.findById(userId);
 		if (user.isPresent()) {
 			User client = (User) user.get();
@@ -35,8 +35,9 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 			newHelpSession.setClient(client);
 			newHelpSession.setSessionStatus(SessionStatus.UNASSIGNED);
 			
-			helpSessionRepo.save(newHelpSession);
+			return (helpSessionRepo.save(newHelpSession)).getSessionId();
 		}
+		return 0;
 		
 	}
 	
@@ -58,6 +59,13 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	@Override
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus) {
 		return helpSessionRepo.findAllBySessionStatus(sessionStatus);
+	}
+
+	@Override
+	public void setSessionComplete(int id) {
+		helpSessionRepo.deleteById(id);
+		
+		
 	}
 
 }

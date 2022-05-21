@@ -7,7 +7,7 @@ public class ChatMessage {
 	
     @Id
     private int id;
-    private int chatId;
+    private int sessionId;
     private int senderId;
     private int recipientId;
     private String senderName;
@@ -18,12 +18,6 @@ public class ChatMessage {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getChatId() {
-		return chatId;
-	}
-	public void setChatId(int chatId) {
-		this.chatId = chatId;
 	}
 	public int getSenderId() {
 		return senderId;
@@ -54,6 +48,12 @@ public class ChatMessage {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public int getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(int sessionId) {
+		this.sessionId = sessionId;
 	}
     
 

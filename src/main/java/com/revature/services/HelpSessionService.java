@@ -9,9 +9,11 @@ import com.revature.models.SessionStatus;
 public interface HelpSessionService {
 	
 	
-	public void createSession(int userId);
+	public int createSession(int userId);
 	public Optional<HelpSession> getSessionById(int id);
 	public Optional<HelpSession> getSessionByUserId(int id);
 	public Optional<HelpSession> getSessionByTechId(int id);
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus);
+	
+	public void setSessionComplete(int id);
 }
