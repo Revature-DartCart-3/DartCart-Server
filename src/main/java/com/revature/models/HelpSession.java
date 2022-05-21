@@ -26,11 +26,11 @@ public class HelpSession {
 	
 	@OneToOne
 	@JoinColumn(name = "user_id")
-	private User client;
+	private User user;
 	
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private User tech;
+//	@OneToOne
+//	@JoinColumn(name = "user_id")
+//	private User tech;
 	
 	@Column(name = "session_status")
 	private SessionStatus sessionStatus;
