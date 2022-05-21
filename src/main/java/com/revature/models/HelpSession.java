@@ -29,10 +29,6 @@ public class HelpSession {
 	@OneToOne
 	private User user; // make to different http request
 
-//	//THIS HAS TO GO
-//	@OneToOne
-////	@JoinColumn(name = "tech_id")
-//	private User tech;
 
 	private SessionStatus sessionStatus;
 }

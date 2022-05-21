@@ -67,7 +67,7 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	}
 
 	@Override
-	public User getSessionByClient(User user, AccountType accountType, int id) {
+	public User getSessionByClient(AccountType accountType, int id) {
 		Optional<User> userOptional = userRepo.findById(id);
 		if(userOptional.isPresent()) {
 			if(userOptional.get().getAccountType() == AccountType.user) {
@@ -82,7 +82,7 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	}
 
 	@Override
-	public User getSessionByAdmin(User user, AccountType accountType, int id){
+	public User getSessionByAdmin(AccountType accountType, int id){
 		Optional<User> adminOptional = userRepo.findById(id);
 		if(adminOptional.isPresent()) {
 			if(adminOptional.get().getAccountType() == accountType.admin) {

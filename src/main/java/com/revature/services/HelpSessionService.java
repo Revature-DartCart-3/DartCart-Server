@@ -17,7 +17,7 @@ public interface HelpSessionService {
 //	public Optional<HelpSession> getSessionByTechId(Integer id);
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus);
 
-	User getSessionByClient(User user, AccountType accountType, int id);
+	User getSessionByClient(AccountType accountType, int id);
 
-	User getSessionByAdmin(User user, AccountType accountType, int id);
+	User getSessionByAdmin(AccountType accountType, int id);
 }
