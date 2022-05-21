@@ -1,5 +1,5 @@
 # DartCart-Server
-Note: This is the back-end portion of the DartCart Application. The required front-end portion can be found here: https://github.com/Revature-DartCart/DartCart-Client
+Note: This is the back-end portion of the DartCart Application. The required front-end portion can be found here: https://github.com/Revature-DartCart-3/DartCart-Client
 
 ## Project Description
 
@@ -24,11 +24,14 @@ DartCart is an e-commerce web application designed to buy and sell products deve
 * Create and Login with an Account.
 * Browse for products by Type, Category, and Supplier.
 * Add items to your cart and checkout items.
+* Choose different payment plans at checkout.
 * Add items to be sold onto the market.
 * View previous order and transaction details.
+* Leave reviews for products.
+* Live tech support chat.
 
 ## Getting Started
-1) in a new folder where you want your project to be saved, right click and select git bash here. In your git bash command terminal, enter: git clone https://github.com/Revature-DartCart-2/DartCart-Server.git
+1) in a new folder where you want your project to be saved, right click and select git bash here. In your git bash command terminal, enter: git clone https://github.com/Revature-DartCart-3/DartCart-Server.git
 2)create a new, seperate folder for where you would like your SpringToolSuites workspace to be. 
 3) open SpringToolSuite, select add a local project, using the drop down choose the folder where you cloned the project for the project path and the newly created workspace folder for the workspace path
 ![Register](https://github.com/Revature-DartCart-2/DartCart-Server/blob/AndrewS/gendoc/image/readme/stslaunch.png?raw=true)
@@ -87,3 +90,30 @@ Please reference the Maven file to see what services need to be installed.
 * Joshua Evans
 
 Dart Cart 2 was made for the Revature Java/React 1/24 batch
+
+## Contributers of third iteration (DartCart 3)
+
+* Caitlin Cassidy
+* Donald Lopez
+* Daun Kim
+* Desiree Steffen
+* Drael Davidson
+* Eric Vara
+* Fatima Baloch
+* Gino Townsend
+* Hunter Risse
+* Kalvin McClure
+* Madison Schweikert
+* Marquel Ellis
+* Matthew Kott
+* Matthew Nevish
+* Megan Orth
+* Mellownee Floyd
+* Rosa Gutierrez
+* Samuel Sholib
+* Shabana Mehr
+* Stefan Riley
+* Uyenvy Nguyen
+
+Dart Cart 3 was made for the Revature Java/React 3/7 batch
+
