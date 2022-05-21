@@ -6,7 +6,8 @@ The applicaiton is currently set up to be run locally with the client side being
 
 The server side is currently connected to a PostgreSQL database. Connection details are found in the application.yaml file. Environment variables are currently being used for the database connection. 
 
-### Set up the environment variables for each user
+### Set up the environment variables for a PostgreSQL database for each user
+
 1. Go to the run configurations for your IDE.
 2. Go to the environment variables for the Dart Cart Server Application.
 3. Add the following environment variables.
@@ -14,6 +15,10 @@ The server side is currently connected to a PostgreSQL database. Connection deta
     Name: pg-username Value: your postgres username (postgres by defualt),
     Name: pg-password Value: your postgress password
 
+### Set up for the reset password feature from the second group
+
+Currently the email account used by the second group is no longer active. If you wish the use the reset password feature a new gmail account along with the password must be added to the application.yaml file.
+The email also sends you to the azurewebsite link. If you wish to change this so that the reset password feature works locally or wherever you wish to host this website, the link is located in the AuthController.java file under the @GetMapping("/resetpass/{username}"). The current link uses https://dart-cart-p3.azurewebsites.net/. Change this to either http://localhost:3000/ or where ever you decide to host the website for the email to send you the correct link.
 
 If you wish to set up an Azure Web App you can follow the below instructions from the Dart Cart 2 group. For this to work the .env file on the client side must be changed to https://dart-cart-p3.azurewebsites.net/ and the azure-webapps-java-jar.yml file must be uncommented on both the client and server side. 
 ### Setting up Azure Web App
