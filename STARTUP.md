@@ -2,8 +2,20 @@
 
 ### Running the application locally
 
-[DartCart-Server/README.md at main · Revature-DartCart-2/DartCart-Server · GitHub](https://github.com/Revature-DartCart-2/DartCart-Server/blob/main/README.md)
+The applicaiton is currently set up to be run locally with the client side being on localhost:3000 and the server side being on localhost:9005.
 
+The server side is currently connected to a PostgreSQL database. Connection details are found in the application.yaml file. Environment variables are currently being used for the database connection. 
+
+### Set up the environment variables for each user
+1. Go to the run configurations for your IDE.
+2. Go to the environment variables for the Dart Cart Server Application.
+3. Add the following environment variables.
+    Name: pg-db       Value: name of your database,
+    Name: pg-username Value: your postgres username (postgres by defualt),
+    Name: pg-password Value: your postgress password
+
+
+If you wish to set up an Azure Web App you can follow the below instructions from the Dart Cart 2 group. For this to work the .env file on the client side must be changed to https://dart-cart-p3.azurewebsites.net/ and the azure-webapps-java-jar.yml file must be uncommented on both the client and server side. 
 ### Setting up Azure Web App
 
 The way this work flow is requires that the Azure App Service is already created so it starts with that.
