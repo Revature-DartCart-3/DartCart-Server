@@ -53,9 +53,9 @@ public class User {
   private long registrationDate;
 
   @NotNull
+  @Enumerated(EnumType.STRING)
   private AccountType accountType;
-  
-  
+
  @Column(name = "imageurl")
   private String imageURL;
   
