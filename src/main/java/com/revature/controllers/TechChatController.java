@@ -75,15 +75,15 @@ public class TechChatController {
     }
 
     //To find a user client individually
-    @MessageMapping("/client")
-    public ResponseEntity<User> getSessionByClient(@RequestParam AccountType accountType, @RequestParam int id) {
-        return ResponseEntity.ok(helpSessionService.getSessionByClient(accountType, id));
-    }
-
-    @MessageMapping("/techies")
-    public ResponseEntity<User> getSessionByAdmin(@RequestParam AccountType accountType, @RequestParam int id) {
-        return ResponseEntity.ok(helpSessionService.getSessionByAdmin(accountType, id));
-    }
+//    @MessageMapping("/client")
+//    public ResponseEntity<User> getSessionByClient(@RequestParam AccountType accountType, @RequestParam int id) {
+//        return ResponseEntity.ok(helpSessionService.getSessionByClient(accountType, id));
+//    }
+//
+//    @MessageMapping("/techies")
+//    public ResponseEntity<User> getSessionByAdmin(@RequestParam AccountType accountType, @RequestParam int id) {
+//        return ResponseEntity.ok(helpSessionService.getSessionByAdmin(accountType, id));
+//    }
     
     
     //Handle either user sending a disconnect message

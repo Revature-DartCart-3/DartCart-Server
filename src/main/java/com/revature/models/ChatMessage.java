@@ -48,8 +48,7 @@ public class ChatMessage {
 	public void setContent(String content) {
 		this.content = content;
 	}
-<<<<<<< HEAD
-=======
+
 	public int getSessionId() {
 		return sessionId;
 	}
@@ -57,6 +56,6 @@ public class ChatMessage {
 		this.sessionId = sessionId;
 	}
     
->>>>>>> 8018b8d43eccb4f6debb5c580e44214f43d26661
+
 
 }
