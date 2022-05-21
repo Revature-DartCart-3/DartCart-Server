@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChatMessage implements Cloneable{
-
-	
-    @Id
+    
+  @Id
     private int id;
     private int sessionId;
     private int senderId;
@@ -19,10 +18,7 @@ public class ChatMessage implements Cloneable{
     private String senderName;
     private String recipientName;
     private String content;
-    
-    
-    
-    
+
 	public int getId() {
 		return id;
 	}
@@ -59,6 +55,7 @@ public class ChatMessage implements Cloneable{
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public int getSessionId() {
 		return sessionId;
 	}
@@ -73,6 +70,7 @@ public class ChatMessage implements Cloneable{
 	}
     
 
+
 	public Object clone() throws CloneNotSupportedException{  
 		return super.clone();  
 	}
@@ -81,9 +79,5 @@ public class ChatMessage implements Cloneable{
 		this.senderId = senderId;
 		this.senderName = senderName;
 	}
-	
-	
-	
-	
-    
+
 }

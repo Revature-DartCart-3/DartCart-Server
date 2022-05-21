@@ -51,6 +51,9 @@ public class User {
 
   @NotNull
   private long registrationDate;
+
+  @NotNull
+  private AccountType accountType;
   
   
  @Column(name = "imageurl")
@@ -59,7 +62,7 @@ public class User {
   
  @Column(name = "about_me")
   private String aboutMe;
-  
+
 
   // add fields for about me
 //  @Column(name = "aboutMe")
@@ -73,11 +76,20 @@ public class User {
   // Returns items in both cart and wishlist
   // Filter by CartItem's saved field to separate the lists
   @OneToMany
-  @JoinColumn(name = "cart_item_id")
+//  @JoinColumn(name = "cart_item_id")
   @JsonIgnore
   private List<CartItem> itemList;
 
   public User(int id) {
     this.id = id;
   }
+
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
 }

@@ -1,5 +1,19 @@
 package com.revature.configs;
 
+//<<<<<<< HEAD
+//import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+//import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
+//import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+//
+//@SuppressWarnings("deprecation")
+//public class SocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigurer {
+//
+//    @Override
+//    public void configureMessageBroker (MessageBrokerRegistry config) {
+//        config.enableStompBrokerRelay("/techchat/queue/specific-user");
+//        config.setApplicationDestinationPrefixes("/spring-security-mvc-socket");
+//        config.setUserDestinationPrefix("/techchat/user");
+//=======
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
@@ -18,6 +32,7 @@ public class SocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
         registry.setApplicationDestinationPrefixes("/app");
         registry.enableSimpleBroker("/chatroom","/user");
         registry.setUserDestinationPrefix("/user");
+
     }
 
     @Override

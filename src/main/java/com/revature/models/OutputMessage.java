@@ -2,13 +2,10 @@ package com.revature.models;
 
 public class OutputMessage {
 
-	
     private String from;
     private String text;
     private String time;
-    
-    
-    
+
 	public OutputMessage(String from, String text, String time) {
 		super();
 		this.from = from;
@@ -33,6 +30,5 @@ public class OutputMessage {
 	public void setTime(String time) {
 		this.time = time;
 	}
-    
-     
+
 }
