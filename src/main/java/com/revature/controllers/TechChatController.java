@@ -44,17 +44,33 @@ public class TechChatController {
     //Handle initial message from client asking for help
     @MessageMapping("/help-request")
     public ChatMessage helpRequest(@Payload ChatMessage message){	
+    	ChatMessage automatedMessage = message;
+    	automatedMessage.setSenderId(0);
+    	automatedMessage.setSenderName("Automated System");
     	
         //simpMessagingTemplate.convertAndSendToUser(message.getRecipientId(), "/private", message);
     	System.out.println("Recieved request for help");
     	System.out.println(message.getRecipientId());
+
+    	//create new session with the requesters user Id, and store the id of the created session
+    	int sessionId = helpSessionService.createSession(message.getSenderId());
     	
-    	//create new session with the requesters user Id
-//    	helpSessionService.createSession(message.getSenderId());
+    	//Send error message
+    	if(sessionId == 0) {     	
+        	automatedMessage.setContent("Could Not Verify User");
+            simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
+            return message;
+    	}
+    	
+    	//Store the session id in the automatedMessage
+    	automatedMessage.setSessionId(sessionId);
     	
     	//send new request to listening techs
-    	simpMessagingTemplate.convertAndSend("/chatroom/techies", message);
-        
+    	simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
+    	
+    	//send a message back to the user containing the session Id
+    	automatedMessage.setContent("Awaiting Tech Specialist...");
+        simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
         return message;
     }
 
@@ -69,6 +85,23 @@ public class TechChatController {
         return ResponseEntity.ok(helpSessionService.getSessionByAdmin(accountType, id));
     }
     
+    
+    //Handle either user sending a disconnect message
+    @MessageMapping("/disconnect")
+    public ChatMessage disconnectMessage(@Payload ChatMessage message) {
+    	
+    	//Create automated message holding information from message
+    	ChatMessage automatedMessage = message;
+    	automatedMessage.setSenderId(0);
+    	automatedMessage.setSenderName("Automated System");
+    	automatedMessage.setContent("User " + message.getSenderName() + " Disconnected");
+    	
+    	//Set session as complete
+    	helpSessionService.setSessionComplete(message.getSessionId());
+    	
+    	simpMessagingTemplate.convertAndSendToUser( Integer.toString(message.getRecipientId()) , "/private", automatedMessage);
+    	return message;
+    }
     
     //Get list of help Requests that have no assigned techs
 //    @RequestMapping("/help-request-list")

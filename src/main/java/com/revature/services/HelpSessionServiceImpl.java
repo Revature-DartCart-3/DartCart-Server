@@ -18,19 +18,17 @@ import org.springframework.util.RouteMatcher;
 @Service
 public class HelpSessionServiceImpl implements HelpSessionService {
 
-	private final UserRepo userRepo;
-	private final HelpSessionRepo helpSessionRepo;
-
 	@Autowired
-	public HelpSessionServiceImpl(UserRepo userRepo, HelpSessionRepo helpSessionRepo) {
-		this.userRepo = userRepo;
-		this.helpSessionRepo = helpSessionRepo;
-	}
+	HelpSessionRepo helpSessionRepo;
+	
+	@Autowired
+	UserRepo userRepo;
+	
+	
+	//Create new help session with the user, and set the status to UNASSIGNED. Returns the sessionId, and if no user is found, returns 0
 
-
-	//Create new help session with the user, and set the status to UNASSIGNED
 	@Override
-	public void createSession(int userId) {
+	public int createSession(int userId) {
 		Optional user = userRepo.findById(userId);
 		if (user.isPresent()) {
 			User client = (User) user.get();
@@ -43,7 +41,16 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 
 			helpSessionRepo.save(newHelpSession);
 		}
-
+			
+			return (helpSessionRepo.save(newHelpSession)).getSessionId();
+		}
+		return 0;
+		
+	}
+	
+	@Override
+	public Optional<HelpSession> getSessionById(int id) {
+		return helpSessionRepo.findById(id);
 	}
 
 //	@Override
@@ -96,6 +103,9 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 		return null;
 	}
 
-
+	@Override
+	public void setSessionComplete(int id) {
+		helpSessionRepo.deleteById(id);
+	}
 
 }

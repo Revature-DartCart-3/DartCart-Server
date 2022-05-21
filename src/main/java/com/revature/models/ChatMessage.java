@@ -5,7 +5,7 @@ import javax.persistence.Id;
 public class ChatMessage {
     @Id
     private int id;
-    private int chatId;
+    private int sessionId;
     private int senderId;
     private int recipientId;
     private String senderName;
@@ -17,12 +17,6 @@ public class ChatMessage {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getChatId() {
-		return chatId;
-	}
-	public void setChatId(int chatId) {
-		this.chatId = chatId;
 	}
 	public int getSenderId() {
 		return senderId;
@@ -54,5 +48,15 @@ public class ChatMessage {
 	public void setContent(String content) {
 		this.content = content;
 	}
+<<<<<<< HEAD
+=======
+	public int getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(int sessionId) {
+		this.sessionId = sessionId;
+	}
+    
+>>>>>>> 8018b8d43eccb4f6debb5c580e44214f43d26661
 
 }
