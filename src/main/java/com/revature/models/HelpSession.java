@@ -19,15 +19,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "help_sessions")
 public class HelpSession {
+  
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sessionId;
-
+	
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-
-
+  
+	@Column(name = "session_status")
 	private SessionStatus sessionStatus;
 }
 

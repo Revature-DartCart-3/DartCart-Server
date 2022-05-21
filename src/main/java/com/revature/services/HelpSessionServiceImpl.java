@@ -17,6 +17,8 @@ import com.revature.repositories.HelpSessionRepo;
 import com.revature.repositories.UserRepo;
 import org.springframework.util.RouteMatcher;
 
+import antlr.TokenWithIndex;
+
 @Service
 public class HelpSessionServiceImpl implements HelpSessionService {
 
@@ -33,26 +35,34 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	public int createSession( int userId) {
 		Optional user = userRepo.findById(userId);
 		if (user.isPresent()) {
+
+			//Get the user that is requesting help
 			User client = (User) user.get();
-
-			System.out.println(client);
-
+			
+			//Create a session with the user
 			HelpSession newHelpSession = new HelpSession();
-
-//			HelpSession newHelpSession = null;
 			newHelpSession.setUser(client);
 			newHelpSession.setSessionStatus(SessionStatus.UNASSIGNED);
-
-			helpSessionRepo.save(newHelpSession);
-			return (helpSessionRepo.save(newHelpSession)).getSessionId();
-
-		} else {
-			return 0;
-
+			newHelpSession = helpSessionRepo.save(newHelpSession);
+			
+			//Return the id of the newly created session
+			return newHelpSession.getSessionId();
 		}
-
+		System.out.println("Couldn't Find User");
+		return 0;
+		
+	}
+	
+	@Override
+	public Optional<HelpSession> getSessionById(int id) {
+		return helpSessionRepo.findById(id);
 	}
 
+  
+//	@Override
+//	public Optional<HelpSession> getSessionByTechId(int id) {
+//		return helpSessionRepo.findByTech(id);
+//	}
 
 	@Override
 	public Optional<HelpSession> getSessionById(int id) {

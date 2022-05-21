@@ -2,8 +2,15 @@ package com.revature.models;
 
 import javax.persistence.Id;
 
-public class ChatMessage {
-    @Id
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+public class ChatMessage implements Cloneable{
+    
+  @Id
     private int id;
     private int sessionId;
     private int senderId;
@@ -55,7 +62,22 @@ public class ChatMessage {
 	public void setSessionId(int sessionId) {
 		this.sessionId = sessionId;
 	}
+	@Override
+	public String toString() {
+		return "ChatMessage [id=" + id + ", sessionId=" + sessionId + ", senderId=" + senderId + ", recipientId="
+				+ recipientId + ", senderName=" + senderName + ", recipientName=" + recipientName + ", content="
+				+ content + "]";
+	}
     
 
+
+	public Object clone() throws CloneNotSupportedException{  
+		return super.clone();  
+	}
+	public ChatMessage(int senderId, String senderName) {
+		super();
+		this.senderId = senderId;
+		this.senderName = senderName;
+	}
 
 }
