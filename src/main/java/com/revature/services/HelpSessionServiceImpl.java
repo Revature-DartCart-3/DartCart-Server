@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.revature.models.AccountType;
+import com.sun.corba.se.impl.ior.OldPOAObjectKeyTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,6 +77,21 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 			}
 		} else {
 			System.out.println("User is not present");
+		}
+		return null;
+	}
+
+	@Override
+	public User getSessionByAdmin(User user, AccountType accountType, int id){
+		Optional<User> adminOptional = userRepo.findById(id);
+		if(adminOptional.isPresent()) {
+			if(adminOptional.get().getAccountType() == accountType.admin) {
+				return adminOptional.get();
+			} else {
+				System.out.println("USer Doesn't match required field");
+			}
+		}else {
+			System.out.println("User wasn't found");
 		}
 		return null;
 	}

@@ -63,6 +63,11 @@ public class TechChatController {
     public ResponseEntity<User> getSessionByClient(User user, @RequestParam AccountType accountType, @RequestParam int id) {
         return ResponseEntity.ok(helpSessionService.getSessionByClient(user, accountType, id));
     }
+
+    @MessageMapping("/techies")
+    public ResponseEntity<User> getSessionByAdmin(User user, @RequestParam AccountType accountType, @RequestParam int id) {
+        return ResponseEntity.ok(helpSessionService.getSessionByAdmin(user, accountType, id));
+    }
     
     
     //Get list of help Requests that have no assigned techs

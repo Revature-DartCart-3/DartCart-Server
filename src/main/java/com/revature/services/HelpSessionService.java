@@ -18,4 +18,6 @@ public interface HelpSessionService {
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus);
 
 	User getSessionByClient(User user, AccountType accountType, int id);
+
+	User getSessionByAdmin(User user, AccountType accountType, int id);
 }
