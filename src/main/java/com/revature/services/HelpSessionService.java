@@ -12,8 +12,14 @@ public interface HelpSessionService {
 	
 	public int createSession(int userId);
 	public Optional<HelpSession> getSessionById(int id);
-	public Optional<HelpSession> getSessionByUserId(int id);
+//	public Optional<HelpSession> getSessionByUserId(int id);
 	//public Optional<HelpSession> getSessionByTechId(int id);
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus);
 	public void setSessionComplete(int userId);
+
+	//	@Override
+	//	public Optional<HelpSession> getSessionById(Integer id) {
+	//		return helpSessionRepo.findById(id);
+	//	}
+	//
 }

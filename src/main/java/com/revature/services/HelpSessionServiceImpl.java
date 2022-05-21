@@ -3,11 +3,7 @@ package com.revature.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.revature.models.AccountType;
-import com.sun.corba.se.impl.ior.OldPOAObjectKeyTemplate;
-import com.sun.org.apache.bcel.internal.generic.ATHROW;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.HelpSession;
@@ -15,9 +11,6 @@ import com.revature.models.SessionStatus;
 import com.revature.models.User;
 import com.revature.repositories.HelpSessionRepo;
 import com.revature.repositories.UserRepo;
-import org.springframework.util.RouteMatcher;
-
-import antlr.TokenWithIndex;
 
 @Service
 public class HelpSessionServiceImpl implements HelpSessionService {
@@ -63,11 +56,6 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 //	public Optional<HelpSession> getSessionByTechId(int id) {
 //		return helpSessionRepo.findByTech(id);
 //	}
-
-	@Override
-	public Optional<HelpSession> getSessionById(int id) {
-		return helpSessionRepo.findById(id);
-	}
 
 	@Override
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus) {
