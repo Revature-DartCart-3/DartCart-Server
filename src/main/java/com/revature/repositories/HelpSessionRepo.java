@@ -17,7 +17,7 @@ import com.revature.models.SessionStatus;
 
 	public interface HelpSessionRepo extends JpaRepository<HelpSession, Integer> {
 		Optional<HelpSession> findByUser(Integer id);
-		Optional<HelpSession> findByTech(Integer id);
+//		Optional<HelpSession> findByTech(Integer id);
 		List<HelpSession> findAllBySessionStatus(SessionStatus status);
 	
 }

@@ -23,11 +23,9 @@ public class HelpSession {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sessionId;
 
-	//THIS HAS TO GO
-//	@OneToOne
-//	@JoinColumn(name = "user_id")
 	@OneToOne
-	private User user; // make to different http request
+	@JoinColumn(name = "user_id")
+	private User user;
 
 
 	private SessionStatus sessionStatus;
