@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.revature.models.AccountType;
+import com.revature.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -17,7 +20,7 @@ import com.revature.models.ChatMessage;
 //import com.revature.models.HelpSession;
 import com.revature.models.SessionStatus;
 import com.revature.services.HelpSessionService;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -25,7 +28,6 @@ public class TechChatController {
 
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
-    
     private HelpSessionService helpSessionService;
     
     
@@ -54,6 +56,12 @@ public class TechChatController {
     	simpMessagingTemplate.convertAndSend("/chatroom/techies", message);
         
         return message;
+    }
+
+    //To find a user client individually
+    @MessageMapping("/client")
+    public ResponseEntity<User> getSessionByClient(User user, @RequestParam AccountType accountType, @RequestParam int id) {
+        return ResponseEntity.ok(helpSessionService.getSessionByClient(user, accountType, id));
     }
     
     
