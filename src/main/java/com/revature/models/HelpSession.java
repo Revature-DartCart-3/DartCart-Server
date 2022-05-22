@@ -2,6 +2,8 @@ package com.revature.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,6 +35,7 @@ public class HelpSession {
 	private User user;
   
 	@Column(name = "session_status")
+	@Enumerated(EnumType.STRING)
 	private SessionStatus sessionStatus;
 }
 
