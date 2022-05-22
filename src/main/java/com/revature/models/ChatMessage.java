@@ -12,6 +12,7 @@ public class ChatMessage implements Cloneable{
     
   @Id
     private int id;
+  	private MessageTypeEnum type;
     private int sessionId;
     private int senderId;
     private int recipientId;
@@ -19,11 +20,41 @@ public class ChatMessage implements Cloneable{
     private String recipientName;
     private String content;
 
+
+    
+
+
+	public Object clone() throws CloneNotSupportedException{  
+		return super.clone();  
+	}
+	public ChatMessage(int senderId, String senderName) {
+		super();
+		this.senderId = senderId;
+		this.senderName = senderName;
+	}
+	@Override
+	public String toString() {
+		return "ChatMessage [id=" + id + ", type=" + type + ", sessionId=" + sessionId + ", senderId=" + senderId
+				+ ", recipientId=" + recipientId + ", senderName=" + senderName + ", recipientName=" + recipientName
+				+ ", content=" + content + "]";
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public MessageTypeEnum getType() {
+		return type;
+	}
+	public void setType(MessageTypeEnum type) {
+		this.type = type;
+	}
+	public int getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(int sessionId) {
+		this.sessionId = sessionId;
 	}
 	public int getSenderId() {
 		return senderId;
@@ -54,30 +85,6 @@ public class ChatMessage implements Cloneable{
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public int getSessionId() {
-		return sessionId;
-	}
-	public void setSessionId(int sessionId) {
-		this.sessionId = sessionId;
-	}
-	@Override
-	public String toString() {
-		return "ChatMessage [id=" + id + ", sessionId=" + sessionId + ", senderId=" + senderId + ", recipientId="
-				+ recipientId + ", senderName=" + senderName + ", recipientName=" + recipientName + ", content="
-				+ content + "]";
-	}
-    
-
-
-	public Object clone() throws CloneNotSupportedException{  
-		return super.clone();  
-	}
-	public ChatMessage(int senderId, String senderName) {
-		super();
-		this.senderId = senderId;
-		this.senderName = senderName;
 	}
 
 }

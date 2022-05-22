@@ -15,7 +15,8 @@ public interface HelpSessionService {
 //	public Optional<HelpSession> getSessionByUserId(int id);
 	//public Optional<HelpSession> getSessionByTechId(int id);
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus);
-	public void setSessionComplete(int userId);
+	public void setSessionComplete(int sessionId);
+	public HelpSession setSessionAssigned(int sessionId);
 
 	//	@Override
 	//	public Optional<HelpSession> getSessionById(Integer id) {

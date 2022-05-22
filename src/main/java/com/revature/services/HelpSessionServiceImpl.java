@@ -67,21 +67,26 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 		helpSessionRepo.deleteById(id);
 	}
 
+	@Override
+	public HelpSession setSessionAssigned(int sessionId) {
+		Optional<HelpSession> sessionPotential = helpSessionRepo.findById(sessionId);
+		
+		if (sessionPotential.isPresent()) {
+			HelpSession session = sessionPotential.get();
+			session.setSessionStatus(SessionStatus.ASSIGNED);
+			return session;
+		}
+		
+		return null;
+	}
+
 
 //	@Override
 //	public Optional<HelpSession> getSessionById(Integer id) {
 //		return helpSessionRepo.findById(id);
 //	}
 //
-//	@Override
-//	public Optional<HelpSession> getSessionByUserId(Integer id) {
-//		return helpSessionRepo.findByUser(id);
-//	}
-//
-//	@Override
-//	public Optional<HelpSession> getSessionByTechId(Integer id) {
-//		return helpSessionRepo.findByTech(id);
-//	}
+
 
 
 

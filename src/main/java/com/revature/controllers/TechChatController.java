@@ -13,6 +13,9 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //import com.revature.models.HelpSession;
@@ -53,6 +56,7 @@ public class TechChatController {
 
 			// Send error message
 			if (sessionId == 0) {
+				automatedMessage.setType(MessageTypeEnum.Error);
 				automatedMessage.setContent("Could Not Verify User");
 				simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
 				return message;
@@ -62,6 +66,7 @@ public class TechChatController {
 			automatedMessage.setSessionId(sessionId);
 
 			// send new request to listening techs
+			automatedMessage.setType(MessageTypeEnum.NewClient);
 			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
 
 			// send a message back to the user containing the session Id
@@ -80,7 +85,9 @@ public class TechChatController {
 		// Set session as complete
 		helpSessionService.setSessionComplete(message.getSessionId());
 		
-		automatedMessage.setContent("Disconnected");
+		//Create automatedMessage to let other user know that their counterpart left
+		automatedMessage.setType(MessageTypeEnum.Leave);
+		automatedMessage.setContent(message.getSenderName() + " Has Left");
 
 		// send message to tech letting them know
 		simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getRecipientId()), "/private",automatedMessage);
@@ -88,9 +95,47 @@ public class TechChatController {
 	}
 
 	// Get list of help Requests that have no assigned techs
-	@RequestMapping("/help-request-list")
+	@GetMapping("/help-request-list")
 	public List<HelpSession> getHelpRequests() {
 		return (List<HelpSession>) helpSessionService.getAllBySessionStatus(SessionStatus.UNASSIGNED);
 	}
+	
+	//Assign tech to client
+	@PutMapping("/assign-tech")
+	public SessionResponse connectTech(@RequestBody SessionResponse sessionResponse) {
+	//public ChatMessage connectTech(@Payload ChatMessage message) {	//This is for setting it to listen on sockets rather then http Requests.
+		HelpSession session = helpSessionService.setSessionAssigned(sessionResponse.getSessionId());
+		if(session != null)  {
+			
+			//Create session data that will be sent to the client and tech This code is commented out as it is only used if this controller is listening on sockets rather then http requests
+//			SessionResponse sessionResponse = new SessionResponse(session.getUser());
+//			sessionResponse.setTechId(message.getSenderId());
+//			sessionResponse.setTechName(message.getSenderName());
+			
+			//Send message to client letting them know what tech has been assigned to them
+			automatedMessage.setContent(sessionResponse.toString());
+			automatedMessage.setType(MessageTypeEnum.Join);
+			simpMessagingTemplate.convertAndSendToUser(Integer.toString(sessionResponse.getClientId()), "/private", automatedMessage);
+			
+			//Send message to Tech letting them know they have successfully joined. This code is commented out as it is only used if this controller is listening on sockets rather then http requests
+//			automatedMessage.setContent("Joined chat with " + session.getUser().getUsername());
+//			simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
+			
+			//Send message to all listening techs letting them know that this client is no longer waiting
+			automatedMessage.setType(MessageTypeEnum.RemoveSession);
+			automatedMessage.setContent(session.toString());
+			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
+			
+			return sessionResponse;
+		}
+		//Send message to Tech that there was an error
+		
+//		automatedMessage.setType(MessageTypeEnum.Error);	This code is commented out as it is only used if this controller is listening on sockets rather then http requests
+//		automatedMessage.setContent("Couldn't Join Session");
+//		simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getRecipientId()), "/private", automatedMessage);
+		
+		return null;
+	}
+	
 }
 
