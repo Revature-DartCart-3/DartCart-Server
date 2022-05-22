@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class SessionResponse {
 	private int sessionId;
 	private int techId;
