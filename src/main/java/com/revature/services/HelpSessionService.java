@@ -10,7 +10,7 @@ import com.revature.models.User;
 
 public interface HelpSessionService {
 	
-	public int createSession(int userId);
+	public HelpSession createSession(int userId);
 	public Optional<HelpSession> getSessionById(int id);
 //	public Optional<HelpSession> getSessionByUserId(int id);
 	//public Optional<HelpSession> getSessionByTechId(int id);

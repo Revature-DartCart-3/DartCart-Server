@@ -52,26 +52,31 @@ public class TechChatController {
 			// create new session with the requesters user Id, and store the id of the
 			// created session
 			System.out.println("Recieved request from user:" + message.getSenderId());
-			int sessionId = helpSessionService.createSession(message.getSenderId());
+			HelpSession session = helpSessionService.createSession(message.getSenderId());
 
 			// Send error message
-			if (sessionId == 0) {
+			if (session == null) {
 				automatedMessage.setType(MessageTypeEnum.Error);
 				automatedMessage.setContent("Could Not Verify User");
 				simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
 				return message;
 			}
-
+			
 			// Store the session id in the automatedMessage
-			automatedMessage.setSessionId(sessionId);
-
-			// send new request to listening techs
-			automatedMessage.setType(MessageTypeEnum.NewClient);
-			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
-
+			automatedMessage.setSessionId(session.getSessionId());
+			
 			// send a message back to the user containing the session Id
 			automatedMessage.setContent("Awaiting Tech Specialist...");
 			simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
+			
+
+
+			// send new request to listening techs
+			automatedMessage.setContent(session.toString());
+			automatedMessage.setType(MessageTypeEnum.NewClient);
+			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
+
+
 		
 		return message;
 	}
@@ -88,9 +93,12 @@ public class TechChatController {
 		//Create automatedMessage to let other user know that their counterpart left
 		automatedMessage.setType(MessageTypeEnum.Leave);
 		automatedMessage.setContent(message.getSenderName() + " Has Left");
-
-		// send message to tech letting them know
 		simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getRecipientId()), "/private",automatedMessage);
+		
+		// send message to other techs letting them know session has ended.
+		
+		
+		
 		return message;
 	}
 
@@ -123,7 +131,7 @@ public class TechChatController {
 			
 			//Send message to all listening techs letting them know that this client is no longer waiting
 			automatedMessage.setType(MessageTypeEnum.RemoveSession);
-			automatedMessage.setContent(session.toString());
+			automatedMessage.setContent(sessionResponse.toString());
 			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
 			
 			return sessionResponse;

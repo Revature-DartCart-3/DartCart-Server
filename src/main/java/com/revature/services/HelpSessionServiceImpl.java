@@ -25,7 +25,7 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	//Create new help session with the user, and set the status to UNASSIGNED. Returns the sessionId, and if no user is found, returns 0
 
 	@Override
-	public int createSession( int userId) {
+	public HelpSession createSession( int userId) {
 		Optional user = userRepo.findById(userId);
 		if (user.isPresent()) {
 
@@ -38,11 +38,11 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 			newHelpSession.setSessionStatus(SessionStatus.UNASSIGNED);
 			newHelpSession = helpSessionRepo.save(newHelpSession);
 			
-			//Return the id of the newly created session
-			return newHelpSession.getSessionId();
+			//Return the newly created session
+			return newHelpSession;
 		}
 		System.out.println("Couldn't Find User");
-		return 0;
+		return null;
 		
 	}
 	
