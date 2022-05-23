@@ -11,7 +11,7 @@ import com.revature.models.SessionStatus;
 
 
 public interface HelpSessionRepo extends CrudRepository<HelpSession, Integer> {
-	Optional<HelpSession> findByUser(int id);
+	Optional<HelpSession> findByClient(int id);
 	//Optional<HelpSession> findByTech(int id);
 	List<HelpSession> findAllBySessionStatus(SessionStatus status);
 }
