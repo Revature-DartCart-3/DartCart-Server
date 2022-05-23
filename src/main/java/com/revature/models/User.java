@@ -84,12 +84,4 @@ public class User {
     this.id = id;
   }
 
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
 }
