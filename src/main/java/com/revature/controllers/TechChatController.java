@@ -67,6 +67,7 @@ public class TechChatController {
 			automatedMessage.setSessionId(session.getSessionId());
 			
 			// send a message back to the user containing the session Id
+			automatedMessage.setType(MessageTypeEnum.Created);
 			automatedMessage.setContent("Awaiting Tech Specialist...");
 			simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
 			

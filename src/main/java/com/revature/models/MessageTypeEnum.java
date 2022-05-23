@@ -1,5 +1,5 @@
 package com.revature.models;
 
 public enum MessageTypeEnum {
-	Message, Error, Join, Leave, NewClient, RemoveSession
+	Message, Error, Join, Leave, NewClient, RemoveSession, Created
 }
