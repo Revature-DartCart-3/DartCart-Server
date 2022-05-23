@@ -34,7 +34,7 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 			
 			//Create a session with the user
 			HelpSession newHelpSession = new HelpSession();
-			newHelpSession.setUser(client);
+			newHelpSession.setClient(client);
 			newHelpSession.setSessionStatus(SessionStatus.UNASSIGNED);
 			newHelpSession = helpSessionRepo.save(newHelpSession);
 			
@@ -47,8 +47,13 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	}
 	
 	@Override
-	public Optional<HelpSession> getSessionById(int id) {
-		return helpSessionRepo.findById(id);
+	public HelpSession getSessionById(int id) {
+		Optional<HelpSession> sessionPotential = helpSessionRepo.findById(id);
+		if (sessionPotential.isPresent()) {
+			HelpSession session = sessionPotential.get();
+			return session;
+		}
+		return null;
 	}
 
   

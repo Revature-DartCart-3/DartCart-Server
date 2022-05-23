@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import com.revature.models.HelpSession;
 import com.revature.services.HelpSessionService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class TechChatController {
 
 	@Autowired
@@ -86,7 +87,17 @@ public class TechChatController {
 	public ChatMessage disconnectMessage(@Payload ChatMessage message) {
 		System.out.println("user " + message.getSenderId() + " Disconnected");
 		System.out.println("Completing session with id:" + message.getSessionId());
-
+		
+		//Create session response from session
+		HelpSession session = helpSessionService.getSessionById(message.getSessionId());
+		SessionResponse sessionResponse = new SessionResponse(session);
+		
+		//Tell techs in waiting to remove this session from their list if it in them. 
+		//This helps to keep requests from persisting if a client disconnects before a tech is assigned to them
+		automatedMessage.setContent(sessionResponse.toString());
+		automatedMessage.setType(MessageTypeEnum.RemoveSession);
+		simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
+		
 		// Set session as complete
 		helpSessionService.setSessionComplete(message.getSessionId());
 		
@@ -95,17 +106,21 @@ public class TechChatController {
 		automatedMessage.setContent(message.getSenderName() + " Has Left");
 		simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getRecipientId()), "/private",automatedMessage);
 		
-		// send message to other techs letting them know session has ended.
-		
-		
+//		// send message to other techs letting them know session has ended.
+//		automatedMessage.setContent(session.toString());
+//		automatedMessage.setType(MessageTypeEnum.RemoveSession);
+//		simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
 		
 		return message;
 	}
 
 	// Get list of help Requests that have no assigned techs
 	@GetMapping("/help-request-list")
-	public List<HelpSession> getHelpRequests() {
-		return (List<HelpSession>) helpSessionService.getAllBySessionStatus(SessionStatus.UNASSIGNED);
+	public List<HelpSession> getHelpRequestsSessions() {
+		System.out.println("Return List");
+		List<HelpSession> sessions = (List<HelpSession>) helpSessionService.getAllBySessionStatus(SessionStatus.UNASSIGNED);
+		System.out.println(sessions.toString());
+		return sessions;
 	}
 	
 	//Assign tech to client
@@ -133,6 +148,7 @@ public class TechChatController {
 			automatedMessage.setType(MessageTypeEnum.RemoveSession);
 			automatedMessage.setContent(sessionResponse.toString());
 			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
+			System.out.println(session.toString());
 			
 			return sessionResponse;
 		}

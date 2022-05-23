@@ -21,6 +21,13 @@ public class SessionResponse {
 		this.clientName = client.getUsername();
 	}
 	
+	//Allow the filtering of a session to a session response
+	public SessionResponse (HelpSession session) {
+		User client = session.getClient();
+		this.clientId = client.getId();
+		this.clientName = client.getUsername();
+	}
+	
 	
 	
 	public int getTechId() {

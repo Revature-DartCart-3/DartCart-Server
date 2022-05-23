@@ -27,12 +27,8 @@ public class HelpSession {
 	private int sessionId;
 	
 	@OneToOne
-	@JoinColumn(name = "user_id", insertable=false, updatable=false)
-	private User client;
-	
-	@OneToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private User client;
   
 	@Column(name = "session_status")
 	@Enumerated(EnumType.STRING)

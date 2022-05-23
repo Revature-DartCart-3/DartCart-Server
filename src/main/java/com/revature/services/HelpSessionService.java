@@ -11,7 +11,7 @@ import com.revature.models.User;
 public interface HelpSessionService {
 	
 	public HelpSession createSession(int userId);
-	public Optional<HelpSession> getSessionById(int id);
+	public HelpSession getSessionById(int id);
 //	public Optional<HelpSession> getSessionByUserId(int id);
 	//public Optional<HelpSession> getSessionByTechId(int id);
 	public List<HelpSession> getAllBySessionStatus(SessionStatus sessionStatus);

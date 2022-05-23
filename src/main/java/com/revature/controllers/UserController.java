@@ -24,7 +24,8 @@ public class UserController {
     consumes = "application/json",
     produces = "application/json"
   )
-  public ResponseEntity<User> newUser(@RequestBody User u, @RequestParam AccountType accountType) {
+  public ResponseEntity<User> newUser(@RequestBody User u) {
+	  System.out.println(u.toString());
     if (u.getUsername() != null) u.setUsername(
       u.getUsername().toLowerCase(Locale.ROOT)
     );
