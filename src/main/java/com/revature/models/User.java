@@ -52,9 +52,9 @@ public class User {
   @NotNull
   private long registrationDate;
 
-//  @NotNull
-//  @Enumerated(EnumType.STRING)
-//  private AccountType accountType;
+  @NotNull
+  @Enumerated(EnumType.STRING)
+  private AccountType accountType;
 
  @Column(name = "imageurl")
   private String imageURL;

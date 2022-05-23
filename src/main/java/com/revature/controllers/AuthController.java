@@ -64,7 +64,6 @@ public class AuthController {
 			User user = (User) authenticate.getPrincipal();
 			com.revature.models.User retUser = userService
 					.getUserByUsername(user.getUsername().toLowerCase(Locale.ROOT));
-			retUser.setPassword(null);
 
 			return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, jwtTokenUtil.generateAccessToken(user))
 					.body(retUser);
