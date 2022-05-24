@@ -36,8 +36,8 @@ public class ProductReview {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties(
-        {"username", 
+    @JsonIgnoreProperties({
+        // "username", 
         "password", 
         // "firstName", 
         // "lastName", 
@@ -46,7 +46,8 @@ public class ProductReview {
         "firstName", 
         "location", 
         "registrationDate", 
-        "itemList"})
+        "itemList"
+    })
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
