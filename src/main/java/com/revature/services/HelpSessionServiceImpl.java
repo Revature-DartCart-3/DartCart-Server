@@ -75,13 +75,18 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 	@Override
 	public HelpSession setSessionAssigned(int sessionId) {
 		Optional<HelpSession> sessionPotential = helpSessionRepo.findById(sessionId);
-		
+		System.out.println("************************************************");
 		if (sessionPotential.isPresent()) {
 			HelpSession session = sessionPotential.get();
+			System.out.println(session.toString());
 			session.setSessionStatus(SessionStatus.ASSIGNED);
+			helpSessionRepo.save(session);
+			System.out.println(session.toString());
+			System.out.println("************************************************");
 			return session;
 		}
-		
+		System.out.println("Session Not Found");
+		System.out.println("************************************************");
 		return null;
 	}
 

@@ -8,6 +8,7 @@ import java.util.List;
 import com.revature.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -42,6 +43,7 @@ public class TechChatController {
 	public ChatMessage recMessage(@Payload ChatMessage message) {
 		System.out.println(message.getRecipientId());
 		System.out.println(message.getSenderId());
+		System.out.println(message.toString());
 		// Send message to user based upon the recipientId within the message
 		simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getRecipientId()), "/private", message);
 		return message;
@@ -49,7 +51,7 @@ public class TechChatController {
 
 	// Handle initial message from client asking for help
 	@MessageMapping("/help-request")
-	public ChatMessage helpRequest(@Payload ChatMessage message) {	
+	public ChatMessage helpRequest(@Payload ChatMessage message, @Header("simpSessionId") String sessionId) {	
 			// create new session with the requesters user Id, and store the id of the
 			// created session
 			System.out.println("Recieved request from user:" + message.getSenderId());
@@ -67,6 +69,7 @@ public class TechChatController {
 			automatedMessage.setSessionId(session.getSessionId());
 			
 			// send a message back to the user containing the session Id
+			automatedMessage.setType(MessageTypeEnum.Created);
 			automatedMessage.setContent("Awaiting Tech Specialist...");
 			simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
 
@@ -124,6 +127,7 @@ public class TechChatController {
 	public SessionResponse connectTech(@RequestBody SessionResponse sessionResponse) {
 	//public ChatMessage connectTech(@Payload ChatMessage message) {	//This is for setting it to listen on sockets rather then http Requests.
 		HelpSession session = helpSessionService.setSessionAssigned(sessionResponse.getSessionId());
+		System.out.println("*********RETURNING SESSION THAT WAS CHOSEN"+ session.getSessionId());
 		if(session != null)  {
 			
 			//Create session data that will be sent to the client and tech This code is commented out as it is only used if this controller is listening on sockets rather then http requests
