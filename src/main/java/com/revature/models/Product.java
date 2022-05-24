@@ -1,7 +1,5 @@
 package com.revature.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +23,7 @@ public class Product {
 
   private String name;
 
-  @Column(length = 1000)
+  @Column(columnDefinition = "text")
   private String description;
   
   private String imageURL;

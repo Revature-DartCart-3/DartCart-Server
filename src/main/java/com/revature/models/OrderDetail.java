@@ -26,7 +26,7 @@ public class OrderDetail {
   @Column(updatable = false)
   private String name;
 
-  @Column(length = 1000, updatable = false)
+  @Column(columnDefinition = "text", updatable = false)
   private String description;
 
   private int quantity;

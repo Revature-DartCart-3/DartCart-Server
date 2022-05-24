@@ -1,8 +1,6 @@
 package com.revature.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import java.util.List;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +27,8 @@ public class Seller {
   @NotNull
   @Column(unique = true)
   private String homepage;
-
+  
+  @Column(columnDefinition = "text")
   private String description;
 
   @OneToOne

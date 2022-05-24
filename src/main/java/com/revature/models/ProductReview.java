@@ -29,7 +29,7 @@ public class ProductReview {
 
     private String title;
 
-    @Column(length = 500)
+    @Column(columnDefinition = "text")
     private String comment;
 
     private int rating;
