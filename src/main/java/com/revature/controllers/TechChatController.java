@@ -69,15 +69,11 @@ public class TechChatController {
 			// send a message back to the user containing the session Id
 			automatedMessage.setContent("Awaiting Tech Specialist...");
 			simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
-			
-
 
 			// send new request to listening techs
 			automatedMessage.setContent(session.toString());
 			automatedMessage.setType(MessageTypeEnum.NewClient);
 			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
-
-
 		
 		return message;
 	}
