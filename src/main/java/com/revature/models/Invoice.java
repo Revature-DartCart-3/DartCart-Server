@@ -1,6 +1,5 @@
 package com.revature.models;
 
-import com.revature.models.User;
 import java.util.List;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;

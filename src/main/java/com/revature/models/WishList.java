@@ -14,12 +14,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="wish_lists")
 public class WishList {
-	
-	
-	//wishlist id
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "wish_list_id", nullable = false)
+	@Column(name = "wish_list_id")
 	private Long wishListId;
 	
 	//user
