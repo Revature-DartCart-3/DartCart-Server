@@ -70,8 +70,8 @@ public class SessionResponse {
 
 	@Override
 	public String toString() {
-		return "SessionResponse [sessionId=" + sessionId + ", techId=" + techId + ", techName=" + techName
-				+ ", clientId=" + clientId + ", clientName=" + clientName + "]";
+		return "{sessionId:" + sessionId + ", techId:" + techId + ", techName:" + techName
+				+ ", clientId:" + clientId + ", clientName:" + clientName + "}";
 	}
 	
 	

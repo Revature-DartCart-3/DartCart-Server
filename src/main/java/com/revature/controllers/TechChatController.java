@@ -67,9 +67,10 @@ public class TechChatController {
 			
 			// Store the session id in the automatedMessage
 			automatedMessage.setSessionId(session.getSessionId());
-			
+			System.out.println(session.toString());
 			// send a message back to the user containing the session Id
 			automatedMessage.setType(MessageTypeEnum.Created);
+			System.out.println("Sending await tech");
 			automatedMessage.setContent("Awaiting Tech Specialist...");
 			simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
 
@@ -84,6 +85,7 @@ public class TechChatController {
 	// Handle either user sending a disconnect message
 	@MessageMapping("/disconnect")
 	public ChatMessage disconnectMessage(@Payload ChatMessage message) {
+		System.out.println(message.toString());
 		System.out.println("user " + message.getSenderId() + " Disconnected");
 		System.out.println("Completing session with id:" + message.getSessionId());
 		
@@ -127,7 +129,7 @@ public class TechChatController {
 	public SessionResponse connectTech(@RequestBody SessionResponse sessionResponse) {
 	//public ChatMessage connectTech(@Payload ChatMessage message) {	//This is for setting it to listen on sockets rather then http Requests.
 		HelpSession session = helpSessionService.setSessionAssigned(sessionResponse.getSessionId());
-		System.out.println("*********RETURNING SESSION THAT WAS CHOSEN"+ session.getSessionId());
+		System.out.println("*********RETURNING SESSION THAT WAS CHOSEN"+ session.getSessionId() );
 		if(session != null)  {
 			
 			//Create session data that will be sent to the client and tech This code is commented out as it is only used if this controller is listening on sockets rather then http requests
@@ -135,20 +137,26 @@ public class TechChatController {
 //			sessionResponse.setTechId(message.getSenderId());
 //			sessionResponse.setTechName(message.getSenderName());
 			
-			//Send message to client letting them know what tech has been assigned to them
+			//Send message to all listening techs letting them know that this client is no longer waiting
+			automatedMessage.setType(MessageTypeEnum.RemoveSession);
 			automatedMessage.setContent(sessionResponse.toString());
+			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
+			System.out.println(session.toString());
+			
+			//Send message to client letting them know what tech has been assigned to them\
+			automatedMessage.setSenderId(sessionResponse.getTechId());
+			automatedMessage.setSenderName(sessionResponse.getTechName());
+			automatedMessage.setContent(sessionResponse.toString());
+			System.out.println(sessionResponse.toString());
 			automatedMessage.setType(MessageTypeEnum.Join);
+			System.out.println(automatedMessage.toString());
 			simpMessagingTemplate.convertAndSendToUser(Integer.toString(sessionResponse.getClientId()), "/private", automatedMessage);
 			
 			//Send message to Tech letting them know they have successfully joined. This code is commented out as it is only used if this controller is listening on sockets rather then http requests
 //			automatedMessage.setContent("Joined chat with " + session.getUser().getUsername());
 //			simpMessagingTemplate.convertAndSendToUser(Integer.toString(message.getSenderId()), "/private", automatedMessage);
 			
-			//Send message to all listening techs letting them know that this client is no longer waiting
-			automatedMessage.setType(MessageTypeEnum.RemoveSession);
-			automatedMessage.setContent(sessionResponse.toString());
-			simpMessagingTemplate.convertAndSend("/chatroom/techies", automatedMessage);
-			System.out.println(session.toString());
+
 			
 			return sessionResponse;
 		}
