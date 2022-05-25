@@ -90,6 +90,12 @@ public class HelpSessionServiceImpl implements HelpSessionService {
 		return null;
 	}
 
+	@Override
+	public void deleteSession(int sessionId) {
+		helpSessionRepo.deleteById(sessionId);
+		
+	}
+
 
 //	@Override
 //	public Optional<HelpSession> getSessionById(Integer id) {

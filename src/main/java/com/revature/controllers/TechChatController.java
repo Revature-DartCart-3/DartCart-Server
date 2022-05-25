@@ -14,6 +14,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -126,6 +127,12 @@ public class TechChatController {
 		List<HelpSession> sessions = (List<HelpSession>) helpSessionService.getAllBySessionStatus(SessionStatus.UNASSIGNED);
 		System.out.println(sessions.toString());
 		return sessions;
+	}
+	
+	//Delete session
+	@DeleteMapping("/delete")
+	public void deleteSession(@RequestParam int session) {
+		helpSessionService.deleteSession(session);
 	}
 	
 	//Assign tech to client
