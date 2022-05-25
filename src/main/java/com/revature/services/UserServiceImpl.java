@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import com.revature.models.AccountType;
 import com.revature.models.User;
 import com.revature.repositories.UserRepo;
 import java.util.List;
@@ -17,7 +18,8 @@ public class UserServiceImpl implements UserService {
   BCryptPasswordEncoder bCryptEncoder;
 
   public User addUser(User user) {
-    user.setPassword(bCryptEncoder.encode(user.getPassword()));
+   user.setPassword(bCryptEncoder.encode(user.getPassword()));
+    user.setAccountType(AccountType.user);
     return userRepo.save(user);
   }
 
