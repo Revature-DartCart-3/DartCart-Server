@@ -56,18 +56,11 @@ public class User {
   @Enumerated(EnumType.STRING)
   private AccountType accountType;
 
- @Column(name = "imageurl")
+  @Column(name = "imageurl")
   private String imageURL;
   
-  
- @Column(name = "about_me")
-  private String aboutMe;
-
-
-  // add fields for about me
-//  @Column(name = "aboutMe")
-//  private String aboutMe;
-//  
+  @Column(name = "about_me")
+  private String aboutMe; 
   
   @NotNull
   @Column
